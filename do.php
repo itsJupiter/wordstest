@@ -1,9 +1,9 @@
 <?php
-$con = mysql_connect("localhost","root","chinaman");//连接数据库,mysql_connect的三个参数分别为数据库地址(一般为localhost)，帐户、和密码
+$con = mysql_connect("localhost","root","chinaman");
 if (!$con)
     {
         die('Could not connect: ' . mysql_error());
-    }//如果连接失败则报错
+    }
 mysql_select_db("toefl", $con);
 function getdata($sheet,$word,$column)
 {
@@ -17,12 +17,18 @@ function updata($sheet,$word,$column,$data)
     mysql_query("UPDATE $sheet SET $column = '$data' WHERE word = '$word'");
     return 1;
 }
-$temp=mysql_query("SELECT word FROM Sheet1");
+$temp=mysql_query("SELECT * FROM list");
 while($row=mysql_fetch_array($temp))
 {
     $word=$row['word'];
+	$type=$row['type'];
+	$near=$row['near'];
     $meaningasqueried=getdata("完整版",$word,"meaning");
-    updata("Sheet1",$word,"meaning",$meaningasqueried);
+	$typeasqueried=getdata("完整版",$word,"type");
+	$nearasqueried=getdata("完整版",$word,"near");
+    updata("list",$word,"meaning",$meaningasqueried);
+	updata("list",$word,"type",$typeasqueried);
+	updata("list",$word,"near",$nearasqueried);
 }
 
 ?>
