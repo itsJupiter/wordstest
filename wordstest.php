@@ -5,22 +5,25 @@ if (!$con)
         die('Could not connect: ' . mysql_error());
     }//如果连接失败则报错
 mysql_select_db("toefl", $con);
-function getdata($list,$num)
+function getdata($word,$column)
 {
-    $temp=mysql_query("SELECT * FROM $list WHERE num='$num' ");
+    $temp=mysql_query("SELECT * FROM list WHERE word'$word');
     $row=mysql_fetch_array($temp);
     $result=$row[$column];
     return $result;
 }
-function updata($list,$word,$column,$data)
+function updata($word,$column,$data)
 {
-    mysql_query("UPDATE $type SET $column = '$data' WHERE filename = '$filename'");
+    mysql_query("UPDATE $type SET $column = '$data' WHERE word = '$word'");
     return 1;
 }
-echo "TOEFL Words Test<br/>";
-$list="list1";
-$temp=mysql_query("SELECT * FROM $list");
-//$list=$_POST['list'];
+if(!$_POST)
+{
+	exit(No POST);
+}
+$list=$_POST['list'];
+echo "TOEFL Words Test List".$list;
+$temp=mysql_query("SELECT * FROM list WHERE 'list'='$list'");
 
 echo "<table border='1'>";
 echo "<tr>";

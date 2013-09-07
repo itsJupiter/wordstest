@@ -30,5 +30,6 @@ while($row=mysql_fetch_array($temp))
 	updata("list",$word,"type",$typeasqueried);
 	updata("list",$word,"near",$nearasqueried);
 }
+echo "done";
 
 ?>
