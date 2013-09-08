@@ -19,8 +19,15 @@ function updata($word,$column,$data)
 }
 if(!$_POST)
 {
-	exit(No POST);
+echo "<form action='wordstest.php' method='POST'>"
+echo "Please enter list number:";
+echo "<input type='text' name='list'/>";
+echo "<br/>";
+echo "<input type='submit' value='进入'/>";
+echo "</form>";
 }
+else
+{
 $list=$_POST['list'];
 echo "TOEFL Words Test List".$list;
 $temp=mysql_query("SELECT * FROM list WHERE 'list'='$list'");
@@ -42,4 +49,5 @@ while($row=mysql_fetch_array($temp))
 echo "</table>";
 echo "<input type='submit' value='提交' />";
 echo "</form>";
+}
 ?>
