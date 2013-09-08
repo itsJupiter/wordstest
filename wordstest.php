@@ -5,17 +5,17 @@ if (!$con)
         die('Could not connect: ' . mysql_error());
     }//如果连接失败则报错
 mysql_select_db("toefl", $con);
+function updata($word,$column,$data)
+{
+    mysql_query("UPDATE list SET '$column' = '$data' WHERE 'word' = '$word' ");
+    return 1;
+}
 function getdata($word,$column)
 {
     $temp=mysql_query("SELECT * FROM list WHERE word'$word');
     $row=mysql_fetch_array($temp);
     $result=$row[$column];
     return $result;
-}
-function updata($word,$column,$data)
-{
-    mysql_query("UPDATE $type SET $column = '$data' WHERE word = '$word'");
-    return 1;
 }
 if(!$_POST)
 {
